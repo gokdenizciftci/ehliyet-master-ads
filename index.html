@@ -3,139 +3,257 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gökdeniz Çiftçi | Developer</title>
+    <title>Gökdeniz Çiftçi | iOS Geliştirici</title>
+    <meta name="description" content="Ehliyet Master uygulamasının resmi web sitesi ve geliştirici portföyü.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
     <style>
-        body {
+        :root {
+            --primary-color: #0A84FF; /* Apple iOS Mavi */
+            --bg-color: #000000;
+            --surface-color: rgba(28, 28, 30, 0.7);
+            --text-primary: #F2F2F7;
+            --text-secondary: #AEAEB2;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            background: #000;
-            color: #0f0;
-            font-family: 'Courier New', Courier, monospace;
-            overflow: hidden;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Arka Plan Efekti */
+        .background-glow {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(10, 132, 255, 0.15), transparent 60%);
+            z-index: -1;
+            animation: pulse 10s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.1); opacity: 1; }
+        }
+
+        /* Navigasyon (Üst Kısım) */
+        nav {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -1px;
+            background: linear-gradient(90deg, #FFFFFF, #AEAEB2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-btn {
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background-color: #007AFF;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(10, 132, 255, 0.4);
+        }
+
+        /* Ana İçerik (Hero Section) */
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        /* Uygulama Kartı (Glassmorphism) */
+        .app-card {
+            background: var(--surface-color);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            transition: transform 0.3s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .app-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #1C1C1E, #2C2C2E);
+            border-radius: 22px;
+            margin: 0 auto 20px auto;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-        }
-
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 0;
-        }
-
-        .content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 40px;
-            border: 2px solid #0f0;
-            border-radius: 15px;
-            box-shadow: 0 0 20px #0f0;
-            max-width: 80%;
-        }
-
-        h1 {
             font-size: 2.5rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .app-title {
+            font-size: 1.8rem;
+            font-weight: 800;
             margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 5px;
         }
 
-        p {
-            font-size: 1.2rem;
+        .app-category {
+            color: var(--primary-color);
+            font-weight: 600;
             margin-bottom: 30px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .btn-container {
+        .download-btn {
+            display: inline-block;
+            background-color: white;
+            color: black;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .download-btn:hover {
+            background-color: #E5E5EA;
+            transform: scale(1.05);
+        }
+
+        /* Alt Kısım (Footer ve Yasal Linkler) */
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: auto;
+        }
+
+        .legal-links {
             display: flex;
-            gap: 20px;
             justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
         }
 
-        .btn {
+        .legal-links a {
+            color: var(--text-secondary);
             text-decoration: none;
-            color: #000;
-            background: #0f0;
-            padding: 12px 25px;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            border: 2px solid #0f0;
-        }
-
-        .btn:hover {
-            background: transparent;
-            color: #0f0;
-            box-shadow: 0 0 15px #0f0;
-        }
-
-        .email-text {
-            margin-top: 20px;
             font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .legal-links a:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
             opacity: 0.7;
+        }
+
+        /* Mobil Uyumluluk */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav { padding: 15px 20px; }
+            .logo { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
-    <canvas id="matrix"></canvas>
+    <div class="background-glow"></div>
 
-    <div class="content">
-        <h1>GÖKDENİZ ÇİFTÇİ</h1>
-        <p>iOS Developer & App Specialist</p>
-        
-        <div class="btn-container">
-            <a href="mailto:gokdenizciftciq@icloud.com" class="btn">E-POSTA GÖNDER</a>
-            <a href="https://apps.apple.com/app/id6742531980" target="_blank" class="btn">EHLİYET MASTER</a>
+    <nav>
+        <div class="logo">Gökdeniz Çiftçi</div>
+        <a href="mailto:gokdenizciftciq@icloud.com" class="contact-btn">İletişime Geç</a>
+    </nav>
+
+    <main class="hero">
+        <h1>Uygulama Geliştirme<br>Yeniden Tanımlandı.</h1>
+        <p>iOS platformunda kullanıcı deneyimini merkeze alan, yüksek performanslı ve modern uygulamalar üretiyoruz.</p>
+
+        <div class="app-card">
+            <div class="app-icon">🚘</div>
+            <div class="app-title">Ehliyet Master</div>
+            <div class="app-category">Eğitim & Sınav Hazırlık</div>
+            <a href="https://apps.apple.com/app/id6742531980" target="_blank" class="download-btn">App Store'dan İndir</a>
         </div>
+    </main>
 
-        <div class="email-text">gokdenizciftciq@icloud.com</div>
-    </div>
+    <footer>
+        <div class="legal-links">
+            <a href="https://sites.google.com/view/ehliyet-master-app/ana-sayfa" target="_blank">Gizlilik Politikası (Privacy Policy)</a>
+            <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank">Kullanım Koşulları (EULA)</a>
+            <a href="mailto:gokdenizciftciq@icloud.com">Destek (Support)</a>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Gökdeniz Çiftçi. Tüm hakları saklıdır.
+        </div>
+    </footer>
 
-    <script>
-        const canvas = document.getElementById('matrix');
-        const ctx = canvas.getContext('2d');
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const letters = "0101010101010101";
-        const fontSize = 16;
-        const columns = canvas.width / fontSize;
-
-        const drops = [];
-        for (let i = 0; i < columns; i++) {
-            drops[i] = 1;
-        }
-
-        function draw() {
-            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.fillStyle = "#0f0";
-            ctx.font = fontSize + "px arial";
-
-            for (let i = 0; i < drops.length; i++) {
-                const text = letters.charAt(Math.floor(Math.random() * letters.length));
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-        }
-
-        setInterval(draw, 33);
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-    </script>
 </body>
 </html>
